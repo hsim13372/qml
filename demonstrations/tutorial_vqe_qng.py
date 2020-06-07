@@ -157,7 +157,7 @@ print("Number of iterations = ", n)
 
 ##############################################################################
 # Visualizing the results
-# -----------------------
+# ^^^^^^^^^^^^^^^^^^^^^^^
 #
 # For single-qubit examples, we can visualize the optimization process in several ways.
 #
@@ -294,8 +294,10 @@ def ansatz(params, wires=[0, 1, 2, 3]):
     qml.CNOT(wires=[2, 0])
     qml.CNOT(wires=[3, 1])
 
-
 ##############################################################################
+# Note: The qubit register has been initialized to |1100⟩ which encodes the 
+# Hartree-Fock state of the hydrogen molecule described with a minimal basis.
+#
 # Again, we define the cost function using the ``VQECost`` class.
 
 cost = qml.VQECost(ansatz, hamiltonian, dev)
@@ -391,6 +393,9 @@ print()
 print("Final circuit parameters = \n", params)
 
 ##############################################################################
+# Visualizing the results
+# ^^^^^^^^^^^^^^^^^^^^^^^
+#
 # To evaluate the performance of our two optimizers, we can compare: (a) the
 # number of steps it takes to reach our ground state estimate and (b) the quality of our ground
 # state estimate by comparing the final optimization energy to the exact value.
@@ -403,16 +408,6 @@ plt.ylabel("Energy difference")
 plt.xlabel("Step")
 plt.legend()
 plt.show()
-
-##############################################################################
-# We see that by employing quantum natural gradients, it takes fewer steps
-# to reach a ground state estimate and the optimized energy achieved by
-# the optimizer is lower than that obtained using vanilla gradient descent.
-#
-# While further benchmark studies are needed to better understand the advantages
-# of quantum natural gradient, preliminary studies such as this tutorial show the potentials
-# of the method.
-
 
 ##############################################################################
 # .. _references:
